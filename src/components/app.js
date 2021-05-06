@@ -1,20 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
+import MessageField from "./message-field";
 
-// home-work-1
 const App = () => {
-  const [messages, setMessages] = useState([]);
 
-  const handleAddMessage = () => {
-    const newState = [...messages, 'Hello!'];
-    setMessages(newState);
-  }
+
 
   return (
     <div>
       <div>
-        <h3>home-work-1</h3>
-        <button onClick={handleAddMessage}>push</button>
-        {messages.map((item, index) => <p key={index}>{item}</p>)}
+        <h3>home-work</h3>
+        <MessageField />
       </div>
     </div>
   )
