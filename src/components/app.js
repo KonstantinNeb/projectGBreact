@@ -1,15 +1,12 @@
 import React from "react";
-import MessageField from "./message-field";
+import Layout from "./layout";
 
 const App = () => {
-
-
 
   return (
     <div>
       <div>
-        <h3>home-work</h3>
-        <MessageField />
+        <Layout />
       </div>
     </div>
   )

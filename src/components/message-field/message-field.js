@@ -1,37 +1,65 @@
-import React, {useEffect, useState} from "react";
-import Message from "../message";
+import React, {useState} from "react";
+import {Button, TextField} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
+import SendIcon from '@material-ui/icons/Send';
+import {AUTHORS} from "../../utils/constants";
 
-const MessageField = () => {
-  const [form, setForm] = useState({
-    text: '',
-    author: ''
-  });
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+  root: {
+    display: 'flex',
+  },
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(5),
+    width: `100%`,
+  },
+}));
 
-  const [messages, setMessages] = useState([]);
+const MessageField = ({onAddMessage}) => {
+  const classes = useStyles();
+
+  const [text, setText] = useState('');
 
   const handleChangeText = (e) => {
-    setForm({...form, text: e.target.value});
+    setText(e.target.value);
   }
 
-  const handleChangeAuthor = (e) => {
-    setForm({...form, author: e.target.value});
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-
-  const handleAddMessage = () => {
-    const newMessages = [...messages, form];
-    setMessages(newMessages);
+    onAddMessage({author: AUTHORS.HUMAN, text });
+    setText('');
   }
 
   return (
     <div>
-      <form>
-        <input name="text" onChange={handleChangeText} value={form.text}/>
-        <input name="author" onChange={handleChangeAuthor} value={form.author}/>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Введите сообщение"
+          variant="outlined"
+          name="text"
+          onChange={handleChangeText}
+          value={text}
+          fullWidth
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          startIcon={<SendIcon />}
+          type="submit"
+        >
+          Отправить
+        </Button>
       </form>
-      <button onClick={handleAddMessage}>отправить</button>
-      {messages.map((item, index) => <p key={index}>{`Сообщение: ${item.text} Автор: ${item.author}`}</p>)}
-      <Message messages={messages}/>
+      </main>
     </div>
   )
 }
