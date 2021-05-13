@@ -24,7 +24,8 @@ const Message = () => {
 
   return (
     <div>
-      {messages.map((item, index) => <p key={index}>{item.text} : {item.author}</p>)}
+      {messages.map((item, index) =>
+        <p key={index}>{item.text} : {item.author}</p>)}
       <MessageField onAddMessage={handleAddMessage} />
     </div>
   )

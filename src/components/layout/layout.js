@@ -3,6 +3,7 @@ import ChatList from "../chat-list";
 import {makeStyles} from "@material-ui/core/styles";
 import Header from "../header";
 import Message from "../message";
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +21,9 @@ const Layout = () => {
 
   return (
     <div className={classes.root}>
-      <Header />
+      <Link to="/profile">
+        <Header />
+      </Link>
       <ChatList />
       <Message />
     </div>

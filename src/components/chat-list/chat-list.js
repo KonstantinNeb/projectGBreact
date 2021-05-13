@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import GroupIcon from '@material-ui/icons/Group';
+import {Link} from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -20,6 +21,13 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
 }));
+
+const chats = [
+  {name: 'CHAT-1', id: 'chat1'},
+  {name: 'CHAT-2', id: 'chat2'},
+  {name: 'CHAT-3', id: 'chat3'},
+  {name: 'CHAT-4', id: 'chat4'},
+];
 
 const ChatList = () => {
   const classes = useStyles();
@@ -37,10 +45,12 @@ const ChatList = () => {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {['chat1', 'chat2', 'chat3', 'chat4'].map((text) => (
-            <ListItem button key={text}>
+          {chats.map((chat) => (
+            <ListItem button key={chat.id}>
               <ListItemIcon><GroupIcon /></ListItemIcon>
-              <ListItemText primary={text} />
+              <Link to={`/git chats/${chat.id}`}>
+                <ListItemText primary={chat.name} />
+              </Link>
             </ListItem>
           ))}
         </List>
