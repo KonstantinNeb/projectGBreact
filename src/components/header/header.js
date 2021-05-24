@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import {makeStyles} from "@material-ui/core/styles";
 import Profile from "../profile";
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -29,6 +30,10 @@ const Header = () => {
           </Typography>
         </Toolbar>
       </AppBar>
+      <>
+        <Link to="/">Home</Link>
+        <Link to="/profile">Profile</Link>
+      </>
       <Profile />
     </div>
   )
