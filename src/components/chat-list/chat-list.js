@@ -43,6 +43,7 @@ const ChatList = () => {
   };
 
   const handleAddChatClick = () => {
+    console.log('click');
     const chatId = uuidv4();
     if (value) {
       dispatch(addChat({name: value, id: chatId}));
@@ -66,7 +67,7 @@ const ChatList = () => {
           {chats.map((chat) => (
             <ListItem button key={chat.id}>
               <ListItemIcon><GroupIcon /></ListItemIcon>
-              <Link to={`/git chats/${chat.id}`}>
+              <Link to={`/chats/${chat.id}`}>
                 <ListItemText primary={chat.name} />
               </Link>
             </ListItem>

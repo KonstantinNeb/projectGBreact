@@ -5,7 +5,7 @@ import SendIcon from '@material-ui/icons/Send';
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useState} from "../../../build/bundle";
 import {addMessageWithThunk} from "../../store/actions/action-creators/messages";
-import {useParams} from "react-router-dom";
+import {useParams, Redirect} from "react-router-dom";
 import ChatList from "../chat-list";
 import Message from "../message";
 import {AUTHORS} from "../../utils/constants";
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const MessageField = () => {
   const classes = useStyles();
 
-  const messages = useSelector(state => state.messages.messagesList);
+  const messages = useSelector(state => state.messagesState.messagesList);
   const dispatch = useDispatch();
   const { chatId } = useParams();
 
@@ -52,6 +52,10 @@ const MessageField = () => {
     },
     [chatId, dispatch]
   );
+
+  if (!chatId || !messages[chatId]) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div>

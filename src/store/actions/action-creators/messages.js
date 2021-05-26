@@ -1,4 +1,4 @@
-import { AUTHORS } from "../../utils/constants";
+import {AUTHORS} from "../../../utils/constants";
 import {MESSAGES_ACTION_TYPES} from "../action-types/messages";
 
 export const addMessage = (newMessage, chatId) => ({
