@@ -1,0 +1,4 @@
+export const CHATS_ACTION_TYPES = {
+  ADD_CHAT: 'ADD_NEW_CHAT',
+  DELETE_CHAT: 'DELETE_CHAT',
+}

@@ -1,0 +1,3 @@
+export const MESSAGES_ACTION_TYPES = {
+  ADD_MESSAGES: 'ADD_MESSAGES',
+}
