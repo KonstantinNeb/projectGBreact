@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, TextField} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import SendIcon from '@material-ui/icons/Send';
@@ -9,6 +9,7 @@ import {useParams, Redirect} from "react-router-dom";
 import ChatList from "../chat-list";
 import Message from "../message";
 import {AUTHORS} from "../../utils/constants";
+import {db} from "../../firebase/firebase";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -31,7 +32,16 @@ const MessageField = () => {
 
   const messages = useSelector(state => state.messagesState.messagesList);
   const dispatch = useDispatch();
-  const { chatId } = useParams();
+
+  useEffect(() => {
+    db.ref("messages").on("value", (snapshot) => {
+      snapshot.forEach((snap) => {
+        messages.push(snap.val());
+      });
+    })
+  }, [messages]);
+
+  const {chatId} = useParams();
 
   const [text, setText] = useState('');
 
